@@ -10,61 +10,247 @@ This application demonstrates:
 - **Modern Stack**: FastAPI backend with Next.js frontend
 - **Semantic Search**: Find related articles using vector similarity
 
-## 🚀 Quick Start
+## 🚀 Complete Setup Guide
 
 ### Prerequisites
 
-- Python 3.9+
-- Node.js 18+
-- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
-- Pinecone API key ([Get one here](https://app.pinecone.io/))
-- Event Registry API key ([Get one here](https://eventregistry.org/))
+Before you begin, ensure you have the following installed:
 
-### Installation
+- **Python 3.9 or higher** - [Download Python](https://www.python.org/downloads/)
+- **Node.js 18 or higher** - [Download Node.js](https://nodejs.org/)
+- **Git** - [Download Git](https://git-scm.com/downloads)
 
-1. **Clone the repository**
+**API Keys Required:**
+- OpenAI API key - [Get one here](https://platform.openai.com/api-keys)
+- Pinecone API key - [Get one here](https://app.pinecone.io/)
+- Event Registry API key - [Get one here](https://eventregistry.org/)
+
+---
+
+## 📥 Step 1: Clone the Repository
+
+Open your terminal (Command Prompt on Windows, Terminal on Mac/Linux) and run:
+
+```bash
+git clone https://github.com/samiyaMalik/ai-news-agency-website.git
+cd ai-news-agency-website
+```
+
+This will download the project to your local system.
+
+---
+
+## 🔧 Step 2: Backend Setup
+
+### 2.1 Install Python Dependencies
+
+In the project root directory, run:
+
+```bash
+pip install -r requirements.txt
+```
+
+**Note:** On some systems, you may need to use `pip3` instead of `pip`. If you encounter permission errors, use:
+```bash
+pip install --user -r requirements.txt
+```
+
+**Expected output:** All packages will be installed. This may take 2-5 minutes.
+
+### 2.2 Configure Environment Variables
+
+1. **Copy the example environment file:**
    ```bash
-   git clone https://github.com/samiyaMalik/ai-news-agency-website.git
-   cd ai-news-agency-website
-   ```
-
-2. **Setup Backend**
-   ```bash
-   # Install dependencies
-   pip install -r requirements.txt
-   
-   # Copy environment file and add your API keys
    cp .env.example .env
-   # Edit .env with your API keys
+   ```
+   
+   **Windows users:** Use:
+   ```bash
+   copy .env.example .env
    ```
 
-3. **Setup Frontend**
-   ```bash
-   cd frontend
-   npm install
+2. **Open `.env` file in a text editor** (Notepad, VS Code, or any editor)
+
+3. **Add your API keys:**
+   ```env
+   # OpenAI Configuration (Required)
+   OPENAI_API_KEY=your_openai_api_key_here
    
-   # Copy environment file
+   # Pinecone Configuration (Required)
+   PINECONE_API_KEY=your_pinecone_api_key_here
+   PINECONE_ENVIRONMENT=us-east-1
+   PINECONE_INDEX_NAME=your-pinecone-index-name
+   
+   # Event Registry API (Required)
+   EVENT_REGISTRY_API_KEY=your_event_registry_api_key_here
+   
+   # Frontend Configuration
+   FRONTEND_URL=http://localhost:3000
+   
+   # Server Configuration
+   BACKEND_PORT=8000
+   ```
+
+4. **Replace the placeholder values** with your actual API keys:
+   - `your_openai_api_key_here` → Your OpenAI API key (starts with `sk-`)
+   - `your_pinecone_api_key_here` → Your Pinecone API key
+   - `your-pinecone-index-name` → Your Pinecone index name
+   - `your_event_registry_api_key_here` → Your Event Registry API key
+
+5. **Save the file**
+
+**⚠️ Important:** Never commit the `.env` file to Git. It's already in `.gitignore` for security.
+
+---
+
+## 🎨 Step 3: Frontend Setup
+
+### 3.1 Install Node.js Dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+**Note:** This will install all frontend dependencies. It may take 2-3 minutes.
+
+### 3.2 Configure Frontend Environment (Optional)
+
+The frontend works with default settings, but if needed:
+
+1. **Copy the example file:**
+   ```bash
    cp .env.example .env.local
-   # Edit .env.local if needed
-   ```
-
-4. **Start Servers**
-   
-   **Terminal 1 - Backend:**
-   ```bash
-   python -m uvicorn backend.main:app --reload --port 8000
    ```
    
-   **Terminal 2 - Frontend:**
+   **Windows users:** Use:
    ```bash
-   cd frontend
-   npm run dev
+   copy .env.example .env.local
    ```
 
-5. **Access the Application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:8000
-   - API Docs: http://localhost:8000/docs
+2. **Edit `.env.local`** if you need to change the API URL (default is `http://localhost:8000/api`)
+
+---
+
+## 🚀 Step 4: Run the Application
+
+You need to run both backend and frontend servers. **Open two separate terminal windows.**
+
+### Terminal 1 - Start Backend Server
+
+In the project root directory:
+
+```bash
+python -m uvicorn backend.main:app --reload --port 8000
+```
+
+**Windows users:** If `python` doesn't work, try `python3` or `py`.
+
+**Expected output:**
+```
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process
+INFO:     Started server process
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+```
+
+**✅ Backend is running when you see:** `Application startup complete`
+
+### Terminal 2 - Start Frontend Server
+
+In the `frontend` directory:
+
+```bash
+cd frontend
+npm run dev
+```
+
+**Expected output:**
+```
+> ai-news-agency-website@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.x.x
+  - Local:        http://localhost:3000
+  - ready started server on 0.0.0.0:3000
+```
+
+**✅ Frontend is running when you see:** `ready started server`
+
+---
+
+## 🌐 Step 5: Access the Application
+
+Once both servers are running:
+
+1. **Open your web browser**
+2. **Navigate to:** http://localhost:3000
+3. **You should see:** The AI News Agency homepage
+
+### Available URLs:
+
+- **Frontend Application:** http://localhost:3000
+- **Backend API:** http://localhost:8000
+- **API Documentation (Swagger UI):** http://localhost:8000/docs
+- **Health Check:** http://localhost:8000/health
+
+---
+
+## ✅ Step 6: Verify Everything Works
+
+1. **Test Frontend:**
+   - Open http://localhost:3000
+   - You should see the search interface
+
+2. **Test Backend:**
+   - Open http://localhost:8000/docs
+   - You should see the API documentation
+   - Try the `/health` endpoint to verify backend is running
+
+3. **Test News Fetching:**
+   - In the frontend, enter a keyword (e.g., "Technology")
+   - Click "Search News"
+   - Articles should appear
+
+4. **Test AI Processing:**
+   - Click "Process with AI" on any article
+   - Wait 15-30 seconds
+   - AI summary and tags should appear
+
+---
+
+## 🛑 Stopping the Servers
+
+To stop the servers:
+- Press `CTRL + C` in each terminal window
+- Or close the terminal windows
+
+---
+
+## 📝 Quick Reference Commands
+
+**Clone and Setup:**
+```bash
+git clone https://github.com/samiyaMalik/ai-news-agency-website.git
+cd ai-news-agency-website
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env with your API keys
+cd frontend
+npm install
+```
+
+**Run Backend:**
+```bash
+python -m uvicorn backend.main:app --reload --port 8000
+```
+
+**Run Frontend:**
+```bash
+cd frontend
+npm run dev
+```
 
 ## 📚 Complete Documentation
 
