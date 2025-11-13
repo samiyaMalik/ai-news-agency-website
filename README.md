@@ -254,7 +254,13 @@ npm run dev
 
 ## 📚 Complete Documentation
 
-This README contains all the information you need to set up and run the application. All setup instructions, API documentation, troubleshooting, and detailed guides are included below.
+This README provides a quick start guide. For comprehensive detailed instructions, see **[GUIDE.md](./GUIDE.md)** which includes:
+- Complete step-by-step setup guide
+- Detailed API documentation
+- Troubleshooting guide
+- Advanced configuration
+- Deployment instructions
+- Usage examples
 
 ## ✨ Features
 
