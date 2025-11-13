@@ -70,6 +70,29 @@ This application demonstrates:
 
 For detailed setup instructions, API documentation, and configuration guide, see [GUIDE.md](./GUIDE.md).
 
+## 📓 Kaggle Notebooks
+
+We provide two Kaggle notebooks for easy setup and testing:
+
+1. **[Kaggle_Setup_Notebook.ipynb](./Kaggle_Setup_Notebook.ipynb)** - Complete setup guide without API keys
+   - Step-by-step instructions to clone and setup the repository
+   - Environment configuration
+   - Installation verification
+   - Perfect for first-time setup
+
+2. **[Kaggle_Test_With_API_Keys.ipynb](./Kaggle_Test_With_API_Keys.ipynb)** - Test notebook with API keys
+   - Add your API keys and test all services
+   - Test news fetching, OpenAI, and Pinecone integration
+   - Verify everything is working correctly
+   - **⚠️ Important: Never commit this file with real API keys to Git!**
+
+### Using Kaggle Notebooks
+
+1. Open the notebook in Kaggle or Jupyter
+2. Run cells sequentially
+3. For test notebook: Add your API keys in the first cell
+4. All services will be tested automatically
+
 ## ✨ Features
 
 - **News Fetching**: Fetch articles from Event Registry API based on keywords
