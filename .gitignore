@@ -75,4 +75,5 @@ frontend/nul
 # User should create a local copy with their actual keys and not commit it
 *_with_real_keys.ipynb
 *_test_keys.ipynb
+Local_Test_Run.ipynb
 
