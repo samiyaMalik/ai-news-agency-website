@@ -66,32 +66,9 @@ This application demonstrates:
    - Backend API: http://localhost:8000
    - API Docs: http://localhost:8000/docs
 
-## 📚 Documentation
+## 📚 Complete Documentation
 
-For detailed setup instructions, API documentation, and configuration guide, see [GUIDE.md](./GUIDE.md).
-
-## 📓 Kaggle Notebooks
-
-We provide two Kaggle notebooks for easy setup and testing:
-
-1. **[Kaggle_Setup_Notebook.ipynb](./Kaggle_Setup_Notebook.ipynb)** - Complete setup guide without API keys
-   - Step-by-step instructions to clone and setup the repository
-   - Environment configuration
-   - Installation verification
-   - Perfect for first-time setup
-
-2. **[Kaggle_Test_With_API_Keys.ipynb](./Kaggle_Test_With_API_Keys.ipynb)** - Test notebook with API keys
-   - Add your API keys and test all services
-   - Test news fetching, OpenAI, and Pinecone integration
-   - Verify everything is working correctly
-   - **⚠️ Important: Never commit this file with real API keys to Git!**
-
-### Using Kaggle Notebooks
-
-1. Open the notebook in Kaggle or Jupyter
-2. Run cells sequentially
-3. For test notebook: Add your API keys in the first cell
-4. All services will be tested automatically
+This README contains all the information you need to set up and run the application. All setup instructions, API documentation, troubleshooting, and detailed guides are included below.
 
 ## ✨ Features
 
@@ -153,9 +130,17 @@ We provide two Kaggle notebooks for easy setup and testing:
 
 ## 🧪 Testing
 
-See [GUIDE.md](./GUIDE.md) for comprehensive testing instructions.
+### Using Local Test Notebook
 
-Quick test:
+For easy local testing with all API keys pre-configured, use `Local_Test_Run.ipynb`:
+1. Open the notebook in Jupyter/Kaggle
+2. Run cells sequentially
+3. **Important:** After installing dependencies, restart the kernel
+4. All services will be tested automatically
+
+**Note:** This notebook is local-only (not in Git) and contains real API keys for testing.
+
+### Quick Test Steps (Manual)
 1. Start both servers
 2. Open http://localhost:3000
 3. Search for a keyword (e.g., "Technology")
@@ -200,6 +185,127 @@ This project is created for assignment purposes.
 ## 📧 Support
 
 For issues or questions, please open an issue in the repository.
+
+---
+
+## 🐛 Troubleshooting
+
+### Database Connection Issues
+- **SQLite**: Works automatically, no setup needed
+- **MySQL**: Verify MySQL is running and check credentials in `.env`
+
+### Pinecone Issues
+- Verify API key is correct
+- Check index name in `.env` matches your Pinecone index name
+- Ensure index dimension matches embedding model (1024)
+- Verify PINECONE_ENVIRONMENT matches your index region
+
+### OpenAI API Errors
+- Verify API key is valid
+- Check API quota/limits
+- Ensure model access (GPT-4 requires access)
+- Check account has credits
+
+### Frontend Not Connecting to Backend
+- Verify `NEXT_PUBLIC_API_URL` is set correctly in `frontend/.env.local`
+- Check CORS configuration in backend
+- Ensure backend server is running on port 8000
+- Check browser console for errors (F12)
+
+### Notebook Installation Issues
+- **"No module named 'fastapi'" error**: Restart the kernel after installing dependencies
+- **Rust compilation errors**: These are warnings - packages will still install. Just restart kernel after installation
+- **Import errors in notebook**: 
+  1. Run the installation cell completely
+  2. Restart kernel (Kernel → Restart Kernel)
+  3. Run all cells from the beginning
+- **Alternative**: Install manually in terminal: `pip install -r requirements.txt`
+
+---
+
+## 📁 Project Structure
+
+```
+ai-news-agency-website/
+├── backend/              # FastAPI backend
+│   ├── routers/         # API endpoints
+│   ├── services/        # Business logic (OpenAI, Pinecone, Event Registry)
+│   └── models.py        # Database models
+├── frontend/            # Next.js frontend
+│   ├── pages/           # Next.js pages
+│   └── components/      # React components
+├── database/            # Database migrations
+├── requirements.txt     # Python dependencies
+├── .env.example         # Environment variables template
+└── README.md            # This file
+```
+
+---
+
+## 📚 API Documentation
+
+### News Endpoints
+
+**Fetch News Articles:**
+```http
+POST /api/news/fetch
+Content-Type: application/json
+
+{
+  "keyword": "Technology",
+  "articles_count": 100,
+  "articles_page": 1
+}
+```
+
+### Article Endpoints
+
+- `GET /api/articles` - Get all articles
+- `GET /api/articles/{id}` - Get article by ID
+- `POST /api/articles/{id}/process-ai` - Process article with AI
+- `GET /api/articles/{id}/related?top_k=5` - Get related articles
+- `POST /api/articles/semantic-search` - Semantic search
+- `GET /api/articles/{id}/social-post` - Get social media post
+
+**Full API Documentation:** http://localhost:8000/docs (when backend is running)
+
+---
+
+## 🔍 Vector Database Integration
+
+### Pinecone Setup
+
+1. Sign up at https://app.pinecone.io/
+2. Create a new index:
+   - **Dimensions**: 1024 (for text-embedding-3-small model)
+   - **Metric**: Cosine similarity
+   - **Cloud**: AWS (or your preferred cloud)
+   - **Region**: us-east-1
+   - **Type**: Dense
+   - **Capacity Mode**: Serverless (recommended)
+3. Copy your index name and add it to `.env`
+
+### How Semantic Search Works
+
+1. Article text is converted to 1024-dimensional embedding using OpenAI
+2. Embedding is stored in Pinecone with metadata
+3. When searching, query text is converted to embedding
+4. Pinecone performs cosine similarity search
+5. Top-k most similar articles are returned ranked by similarity score
+
+---
+
+## 🚀 Deployment
+
+### Backend Deployment
+1. Set environment variables on hosting platform
+2. Run database migrations
+3. Start with production ASGI server
+
+### Frontend Deployment
+1. Build production bundle: `cd frontend && npm run build`
+2. Deploy to Vercel, Netlify, or similar platform
+3. Set `NEXT_PUBLIC_API_URL` to production backend URL
 
 ---
 

@@ -70,10 +70,7 @@ htmlcov/
 nul
 frontend/nul
 
-# Test notebooks with API keys (user should keep local copy with their keys)
-# Note: Kaggle_Test_With_API_Keys.ipynb is in repo with placeholders
-# User should create a local copy with their actual keys and not commit it
-*_with_real_keys.ipynb
-*_test_keys.ipynb
-Local_Test_Run.ipynb
+# Jupyter Notebooks - All notebooks are local only (not in Git)
+# Users can create their own notebooks locally for testing
+*.ipynb
 
