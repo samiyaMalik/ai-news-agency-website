@@ -1,0 +1,4 @@
+# Alembic migration files will be stored here
+# Run: alembic revision --autogenerate -m "Initial migration"
+# Then: alembic upgrade head
+
