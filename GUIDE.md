@@ -4,6 +4,26 @@ A comprehensive guide for setting up, configuring, and using the AI-Powered News
 
 ---
 
+## 🎥 Demo Video
+
+Watch the application in action before you start:
+
+[![AI News Agency Demo](https://img.shields.io/badge/📹-Watch%20Demo-blue)](./video.mp4)
+
+**Direct Video Link:** [video.mp4](./video.mp4)
+
+**Video Content:**
+- Complete application walkthrough
+- News fetching demonstration
+- AI processing workflow
+- Semantic search functionality
+- Social media post generation
+- Related articles feature
+
+*Watch the demo video to see all features in action before setting up the application.*
+
+---
+
 ## 📋 Table of Contents
 
 1. [Introduction](#introduction)
