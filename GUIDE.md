@@ -409,14 +409,18 @@ Returns AI-generated caption and DALL·E image.
 
 ### Pinecone Setup
 
-1. **Pinecone Index**: Your index is already configured:
-   - Index Name: `mydatabse-r3nvkez`
-   - Dimension: 1024 (for text-embedding-3-small)
-   - Metric: Cosine similarity
-   - Cloud: AWS
-   - Region: us-east-1
+1. **Create Your Pinecone Index**:
+   - Sign up at https://app.pinecone.io/
+   - Create a new index with these settings:
+     - **Index Name**: Choose your own name (e.g., `ai-news-embeddings`)
+     - **Dimension**: 1024 (for text-embedding-3-small model)
+     - **Metric**: Cosine similarity
+     - **Cloud**: AWS (or your preferred cloud)
+     - **Region**: us-east-1 (or your preferred region)
+     - **Type**: Dense
+     - **Capacity Mode**: Serverless (recommended)
 
-2. **Get API Key**: Use the provided API key in your `.env` file
+2. **Get API Key**: Copy your API key from Pinecone dashboard and add to `.env` file
 
 3. **Note**: The code automatically generates 1024-dimensional embeddings to match your Pinecone index
 
@@ -532,8 +536,9 @@ The "Related Articles" feature uses the article's own embedding to find semantic
 
 ### Pinecone Issues
 - Verify API key is correct
-- Check index name matches configuration: `mydatabse-r3nvkez`
+- Check index name in `.env` matches your Pinecone index name
 - Ensure index dimension matches embedding model (1024)
+- Verify PINECONE_ENVIRONMENT matches your index region
 - Check Pinecone dashboard for index status
 
 ### OpenAI API Errors
