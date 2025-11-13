@@ -10,6 +10,26 @@ This application demonstrates:
 - **Modern Stack**: FastAPI backend with Next.js frontend
 - **Semantic Search**: Find related articles using vector similarity
 
+## 🎥 Demo Video
+
+Watch the application in action:
+
+### Video Demo
+
+[![AI News Agency Demo](https://img.shields.io/badge/📹-Watch%20Demo-blue)](./video.mp4)
+
+**Direct Video Link:** [video.mp4](./video.mp4)
+
+**Note:** The demo video shows:
+- News article fetching from Event Registry
+- AI processing with GPT-4 (summaries, tags, captions)
+- DALL·E image generation
+- Semantic search functionality
+- Related articles feature
+- Complete workflow demonstration
+
+*Click the link above or download the video file to watch the full demonstration.*
+
 ## 🚀 Complete Setup Guide
 
 ### Prerequisites
